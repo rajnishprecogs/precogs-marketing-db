@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Precogs Outbound HQ</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+<div class="app">
+  <header class="header">
+    <div class="header-left">
+      <h1 class="logo">⚡ Precogs <span class="accent">Outbound HQ</span></h1>
+      <span class="badge">Week <span id="currentWeek">1</span></span>
+    </div>
+    <span class="date" id="currentDate"></span>
+  </header>
+
+  <!-- Tabs -->
+  <nav class="tabs">
+    <button class="tab active" data-tab="dashboard">📊 Dashboard</button>
+    <button class="tab" data-tab="infra">🔧 Infrastructure</button>
+    <button class="tab" data-tab="icp">🎯 ICP & Sequences</button>
+    <button class="tab" data-tab="process">⚙️ Process</button>
+    <button class="tab" data-tab="weekly">📅 Weekly Plan</button>
+  </nav>
+
+  <!-- TAB 1: Dashboard -->
+  <div class="tab-content active" id="tab-dashboard">
+    <div class="kpi-grid">
+      <div class="kpi"><div class="kpi-label">Emails Sent</div><div class="kpi-val" id="totalSent">0</div><div class="kpi-sub">this week</div></div>
+      <div class="kpi"><div class="kpi-label">Open Rate</div><div class="kpi-val" id="openRate">0%</div><div class="kpi-sub">target: &gt;50%</div></div>
+      <div class="kpi"><div class="kpi-label">Reply Rate</div><div class="kpi-val" id="replyRate">0%</div><div class="kpi-sub">target: 3-8%</div></div>
+      <div class="kpi highlight"><div class="kpi-label">Meetings Booked</div><div class="kpi-val green" id="meetingsBooked">0</div><div class="kpi-sub">this week</div></div>
+      <div class="kpi"><div class="kpi-label">Bounce Rate</div><div class="kpi-val" id="bounceRate">0%</div><div class="kpi-sub">target: &lt;2%</div></div>
+      <div class="kpi"><div class="kpi-label">Positive Replies</div><div class="kpi-val" id="positiveReplies">0</div><div class="kpi-sub">total</div></div>
+    </div>
+    <div class="grid-2">
+      <div class="card full-span">
+        <div class="card-hdr"><h2>📊 Daily Log</h2><button class="btn-s" onclick="addEntry()">+ Add Entry</button></div>
+        <table><thead><tr><th>Date</th><th>Sent</th><th>Opens</th><th>Replies</th><th>Positive</th><th>Bounced</th><th>Meetings</th></tr></thead><tbody id="dailyBody"></tbody></table>
+      </div>
+      <div class="card full-span">
+        <h2>💰 Pipeline</h2>
+        <div class="pipeline"><div class="stage"><div class="s-num" id="pL">0</div><div class="s-lbl">Leads</div></div><div class="arrow">→</div><div class="stage"><div class="s-num" id="pD">0</div><div class="s-lbl">Demos</div></div><div class="arrow">→</div><div class="stage"><div class="s-num" id="pO">0</div><div class="s-lbl">Opps</div></div><div class="arrow">→</div><div class="stage hl"><div class="s-num green" id="pW">0</div><div class="s-lbl">Won</div></div></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- TAB 2: Infrastructure -->
+  <div class="tab-content" id="tab-infra">
+    <div class="grid-2">
+      <div class="card">
+        <div class="card-hdr"><h2>🌐 Domain & Email Setup</h2><span class="prog" id="domainProg">0/8</span></div>
+        <div class="checks" id="domainChecks">
+          <label class="ck"><input type="checkbox" data-g="domain">Buy 3-5 secondary domains (getprecogs.com, precogs-security.com, etc.)</label>
+          <label class="ck"><input type="checkbox" data-g="domain">Create Google Workspace mailboxes (3 per domain)</label>
+          <label class="ck"><input type="checkbox" data-g="domain">SPF records configured on ALL domains</label>
+          <label class="ck"><input type="checkbox" data-g="domain">DKIM configured on ALL domains</label>
+          <label class="ck"><input type="checkbox" data-g="domain">DMARC configured on ALL domains</label>
+          <label class="ck"><input type="checkbox" data-g="domain">Custom tracking domain (track.getprecogs.com)</label>
+          <label class="ck"><input type="checkbox" data-g="domain">Warmup running 14+ days on ALL mailboxes</label>
+          <label class="ck"><input type="checkbox" data-g="domain">Inbox placement &gt;95% confirmed</label>
+        </div>
+      </div>
+      <div class="card">
+        <div class="card-hdr"><h2>🚀 Product Readiness</h2><span class="prog" id="productProg">0/8</span></div>
+        <div class="checks" id="productChecks">
+          <label class="ck"><input type="checkbox" data-g="product">App is stable and fully deployed (no critical bugs)</label>
+          <label class="ck"><input type="checkbox" data-g="product">GitHub scan working end-to-end (SAST, SCA, IaC, Container)</label>
+          <label class="ck"><input type="checkbox" data-g="product">GitLab scan working</label>
+          <label class="ck"><input type="checkbox" data-g="product">Auto-Fix feature working and tested</label>
+          <label class="ck"><input type="checkbox" data-g="product">Welcome email sent on signup (via Brevo)</label>
+          <label class="ck"><input type="checkbox" data-g="product">First scan completion email working</label>
+          <label class="ck"><input type="checkbox" data-g="product">Trial expiry email sequence active</label>
+          <label class="ck"><input type="checkbox" data-g="product">Onboarding flow tested by 3+ people</label>
+        </div>
+      </div>
+      <div class="card">
+        <div class="card-hdr"><h2>📬 Mailbox Health</h2><button class="btn-s" onclick="addMailbox()">+ Add</button></div>
+        <table><thead><tr><th>Mailbox</th><th>Domain</th><th>Day</th><th>Inbox %</th><th>Status</th></tr></thead><tbody id="mailboxBody"></tbody></table>
+      </div>
+      <div class="card">
+        <div class="card-hdr"><h2>✅ Compliance</h2><span class="prog" id="compProg">0/5</span></div>
+        <div class="checks" id="compChecks">
+          <label class="ck"><input type="checkbox" data-g="comp">Unsubscribe line in every cold email</label>
+          <label class="ck"><input type="checkbox" data-g="comp">Company address in email signature</label>
+          <label class="ck"><input type="checkbox" data-g="comp">GDPR: legitimate interest basis documented</label>
+          <label class="ck"><input type="checkbox" data-g="comp">Global suppression list created</label>
+          <label class="ck"><input type="checkbox" data-g="comp">Auto-remove non-responders after 90 days</label>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- TAB 3: ICP & Sequences -->
+  <div class="tab-content" id="tab-icp">
+    <div class="grid-2">
+      <div class="card full-span">
+        <h2>🎯 Ideal Customer Profile</h2>
+        <div class="icp-grid">
+          <div class="icp-card primary">
+            <h3>Primary: Security Buyer</h3>
+            <table class="mini"><tr><td><strong>Title</strong></td><td>CISO, VP Security, Head of AppSec</td></tr><tr><td><strong>Company</strong></td><td>200-5000 employees</td></tr><tr><td><strong>Industry</strong></td><td>Fintech, SaaS, HealthTech, Banking</td></tr><tr><td><strong>Tech</strong></td><td>GitHub/GitLab, CI/CD, uses AI coding tools</td></tr><tr><td><strong>Geo</strong></td><td>UK → EMEA → US</td></tr><tr><td><strong>Trigger</strong></td><td>Recent funding, hiring security, posted DevSecOps job</td></tr></table>
+          </div>
+          <div class="icp-card secondary">
+            <h3>Secondary: Engineering Buyer</h3>
+            <table class="mini"><tr><td><strong>Title</strong></td><td>VP Engineering, CTO, DevSecOps Lead</td></tr><tr><td><strong>Company</strong></td><td>50-2000 employees</td></tr><tr><td><strong>Industry</strong></td><td>Same + Developer Tools</td></tr><tr><td><strong>Tech</strong></td><td>Actively using Copilot/Cursor</td></tr><tr><td><strong>Geo</strong></td><td>UK → US</td></tr><tr><td><strong>Trigger</strong></td><td>Growing dev team, scaling CI/CD</td></tr></table>
+          </div>
+        </div>
+      </div>
+      <div class="card full-span">
+        <h2>✉️ Email Sequence Architecture</h2>
+        <p class="hint">Each sequence = 4 emails over 12 days. Always plain text, &lt;80 words, one soft CTA.</p>
+        <div class="seq-flow">
+          <div class="seq-step"><div class="step-day">Day 0</div><div class="step-title">Pain + Curiosity</div><div class="step-desc">Lead with THEIR pain. Ask a question. No links, no pitch.</div><div class="step-ex">"What's your team's false positive rate on code scans right now?"</div></div>
+          <div class="seq-arrow">→</div>
+          <div class="seq-step"><div class="step-day">Day 3</div><div class="step-title">Social Proof + Insight</div><div class="step-desc">Share a data point or unique capability. Build credibility.</div><div class="step-ex">"We're the only platform catching PII before it's sent to AI assistants."</div></div>
+          <div class="seq-arrow">→</div>
+          <div class="seq-step"><div class="step-day">Day 7</div><div class="step-title">Value Bomb</div><div class="step-desc">Give something useful regardless of whether they buy. CVE analysis, case study.</div><div class="step-ex">"CVE-2026-XXXXX affects Django apps — most SAST tools miss it. Here's our analysis."</div></div>
+          <div class="seq-arrow">→</div>
+          <div class="seq-step"><div class="step-day">Day 12</div><div class="step-title">Breakup</div><div class="step-desc">Short, no pressure. Creates FOMO. Highest reply-rate email.</div><div class="step-ex">"If this isn't a priority right now, I'll close this thread. Just hit reply if it is."</div></div>
+        </div>
+      </div>
+      <div class="card">
+        <h2>Sequence A: False Positive Fatigue</h2>
+        <p class="hint">For CISOs / Security Leaders</p>
+        <div class="seq-detail">
+          <div class="email-preview"><strong>Subject:</strong> {{firstName}}, quick question on {{company}}'s appsec<br><strong>Hook:</strong> "What's your false positive rate? We keep hearing 30-40%. Precogs runs at &lt;2%."<br><strong>CTA:</strong> "Worth a 15-min chat?"</div>
+        </div>
+      </div>
+      <div class="card">
+        <h2>Sequence B: AI Code Security</h2>
+        <p class="hint">For VP Eng / CTO</p>
+        <div class="seq-detail">
+          <div class="email-preview"><strong>Subject:</strong> {{company}} + AI-generated code security<br><strong>Hook:</strong> "34% of Copilot-generated functions have OWASP Top 10 vulns."<br><strong>CTA:</strong> "Worth a quick look?"</div>
+        </div>
+      </div>
+      <div class="card full-span">
+        <h2>Sequence C: Competitor Displacement</h2>
+        <p class="hint">For known Snyk/SonarQube users (detected via Clay enrichment)</p>
+        <div class="seq-detail">
+          <div class="email-preview"><strong>Subject:</strong> {{firstName}}, re: {{company}}'s Snyk setup<br><strong>Hook:</strong> "Not bashing Snyk — they're solid for SCA. But if your team is still dealing with noisy SAST or missing PII in AI code, that's the gap we fill."<br><strong>CTA:</strong> "Worth comparing results on one repo?"</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- TAB 4: Process -->
+  <div class="tab-content" id="tab-process">
+    <div class="card full-span">
+      <h2>⚙️ Apollo → Clay → Instantly Pipeline</h2>
+      <div class="process-flow">
+        <div class="pf-step"><div class="pf-icon">🔍</div><h3>1. Apollo</h3><p>Find prospects by ICP filters</p><ul><li>Title: CISO, VP Eng, CTO</li><li>Size: 200-5000 employees</li><li>Industry: Fintech, SaaS, Health</li><li>Geo: UK → EMEA → US</li><li>Export 500-1000 per segment</li><li>Verify emails (remove "guessed")</li></ul></div>
+        <div class="pf-arrow">→</div>
+        <div class="pf-step"><div class="pf-icon">🧪</div><h3>2. Clay</h3><p>Enrich + personalise at scale</p><ul><li>Tech stack (BuiltWith) — using Snyk?</li><li>Recent funding (Crunchbase)</li><li>Security hires (LinkedIn)</li><li>AI tool usage (job postings)</li><li>AI-generated personalised opening line</li><li>Remove existing customers/warm contacts</li></ul></div>
+        <div class="pf-arrow">→</div>
+        <div class="pf-step"><div class="pf-icon">📧</div><h3>3. Instantly</h3><p>Send sequences + manage warmup</p><ul><li>Import enriched CSV from Clay</li><li>Map Clay columns → merge tags</li><li>Assign sequence (A, B, or C)</li><li>Set limits: 20-50/day per mailbox</li><li>Schedule: Mon-Thu, 8-11 AM local</li><li>Enable reply detection + OOO pause</li></ul></div>
+        <div class="pf-arrow">→</div>
+        <div class="pf-step"><div class="pf-icon">🔥</div><h3>4. Positive Reply</h3><p>Convert to pipeline</p><ul><li>Respond within 2 hours</li><li>Book Cal.com meeting</li><li>Promote to MarketingContact DB</li><li>Add to Brevo warm nurture</li><li>Track in pipeline (Lead → Demo)</li><li>Never re-cold-email this person</li></ul></div>
+      </div>
+    </div>
+    <div class="grid-2">
+      <div class="card">
+        <h2>📊 Expected Benchmarks</h2>
+        <table>
+          <thead><tr><th>Metric</th><th>Industry Avg</th><th>Good</th><th>Great</th></tr></thead>
+          <tbody>
+            <tr><td>Open Rate</td><td>40-50%</td><td class="good">55%</td><td class="great">65%+</td></tr>
+            <tr><td>Reply Rate</td><td>1-3%</td><td class="good">5%</td><td class="great">8%+</td></tr>
+            <tr><td>Positive Reply</td><td>0.5-1%</td><td class="good">2%</td><td class="great">3%+</td></tr>
+            <tr><td>Bounce Rate</td><td>&lt;3%</td><td class="good">&lt;2%</td><td class="great">&lt;1%</td></tr>
+            <tr><td>Meeting/100 sent</td><td>0.5</td><td class="good">1-2</td><td class="great">3+</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="card">
+        <h2>🚫 Never Do</h2>
+        <div class="dont-list">
+          <div class="dont">❌ Send cold email from precogs.ai — ruins your primary domain</div>
+          <div class="dont">❌ Send before warmup completes (14+ days)</div>
+          <div class="dont">❌ Blast email lists via Brevo — will get you banned</div>
+          <div class="dont">❌ Use HTML/images in cold email — triggers spam filters</div>
+          <div class="dont">❌ Pitch in first message — ask a question instead</div>
+          <div class="dont">❌ Skip email verification — &gt;3% bounce = blacklist</div>
+          <div class="dont">❌ Re-email someone who said "not interested"</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- TAB 5: Weekly Plan -->
+  <div class="tab-content" id="tab-weekly">
+    <div class="card full-span">
+      <h2>📅 8-Week Ramp-Up Plan</h2>
+      <table class="weekly-table">
+        <thead><tr><th>Week</th><th>Focus</th><th>Emails/Day</th><th>Total/Week</th><th>Expected Replies</th><th>Expected Meetings</th><th>Key Actions</th></tr></thead>
+        <tbody>
+          <tr class="warmup"><td><strong>1-2</strong></td><td>🟡 Warmup Only</td><td>0</td><td>0</td><td>—</td><td>—</td><td>Buy domains, create mailboxes, start warmup, build lists in Apollo, enrich in Clay, write sequences</td></tr>
+          <tr><td><strong>3</strong></td><td>🟢 Soft Launch</td><td>20/mailbox</td><td>~300</td><td>3-9</td><td>0-1</td><td>Sequence A only, UK Fintech CISOs only. Monitor deliverability daily.</td></tr>
+          <tr><td><strong>4</strong></td><td>🟢 A/B Test</td><td>25/mailbox</td><td>~375</td><td>4-12</td><td>1-2</td><td>A/B test subject lines. Add Sequence B for VP Engs. Analyse Week 3 data.</td></tr>
+          <tr><td><strong>5</strong></td><td>🟢 Scale</td><td>35/mailbox</td><td>~525</td><td>5-15</td><td>1-3</td><td>Add EMEA segments. Add Sequence C (competitor displacement). Kill losing variants.</td></tr>
+          <tr><td><strong>6</strong></td><td>🟢 Optimise</td><td>40/mailbox</td><td>~600</td><td>6-18</td><td>2-3</td><td>Double down on best sequence. Add US segments. Review pipeline conversion.</td></tr>
+          <tr><td><strong>7</strong></td><td>🔵 Cruise</td><td>45/mailbox</td><td>~675</td><td>7-20</td><td>2-4</td><td>Buy 2 more domains + 6 mailboxes (start warmup). Refine ICP based on who replies.</td></tr>
+          <tr><td><strong>8</strong></td><td>🔵 Scale Up</td><td>50/mailbox</td><td>~750</td><td>8-23</td><td>3-5</td><td>New domains active. Scale to 1000+/day target. Consider hiring SDR for reply handling.</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="grid-2">
+      <div class="card">
+        <h2>⏰ Best Send Times</h2>
+        <div class="time-grid">
+          <div class="time-slot best"><div class="time-day">Tuesday</div><div class="time-hours">8:00 - 10:30 AM</div><div class="time-note">🔥 Best day overall</div></div>
+          <div class="time-slot good"><div class="time-day">Wednesday</div><div class="time-hours">8:00 - 10:30 AM</div><div class="time-note">✅ Strong performer</div></div>
+          <div class="time-slot good"><div class="time-day">Thursday</div><div class="time-hours">8:00 - 10:30 AM</div><div class="time-note">✅ Good for follow-ups</div></div>
+          <div class="time-slot ok"><div class="time-day">Monday</div><div class="time-hours">9:00 - 11:00 AM</div><div class="time-note">⚠️ Inbox overload from weekend</div></div>
+          <div class="time-slot bad"><div class="time-day">Friday</div><div class="time-hours">—</div><div class="time-note">❌ Avoid — low open rates</div></div>
+          <div class="time-slot bad"><div class="time-day">Weekends</div><div class="time-hours">—</div><div class="time-note">❌ Never send</div></div>
+        </div>
+        <p class="hint" style="margin-top:12px">Always send in recipient's local timezone. Instantly handles this automatically.</p>
+      </div>
+      <div class="card">
+        <h2>📈 Cumulative Projections (8 weeks)</h2>
+        <table>
+          <thead><tr><th>Metric</th><th>Conservative</th><th>Optimistic</th></tr></thead>
+          <tbody>
+            <tr><td>Total emails sent</td><td>2,500</td><td>3,500</td></tr>
+            <tr><td>Total opens</td><td>1,250 (50%)</td><td>2,100 (60%)</td></tr>
+            <tr><td>Total replies</td><td>50 (2%)</td><td>175 (5%)</td></tr>
+            <tr><td>Positive replies</td><td>25 (1%)</td><td>70 (2%)</td></tr>
+            <tr><td>Meetings booked</td><td class="good">10-15</td><td class="great">25-35</td></tr>
+            <tr><td>Pipeline value</td><td>£50K-100K</td><td>£150K-250K</td></tr>
+            <tr><td>Closed deals</td><td>1-2</td><td>3-5</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+
+  <!-- Modal -->
+  <div class="modal-bg" id="modal">
+    <div class="modal">
+      <h3>Add Daily Entry</h3>
+      <form onsubmit="saveEntry(event)">
+        <div class="fg"><label>Date<input type="date" id="eDate" required></label><label>Sent<input type="number" id="eSent" min="0" value="0"></label><label>Opens<input type="number" id="eOpens" min="0" value="0"></label><label>Replies<input type="number" id="eReplies" min="0" value="0"></label><label>Positive<input type="number" id="ePos" min="0" value="0"></label><label>Bounced<input type="number" id="eBounce" min="0" value="0"></label><label>Meetings<input type="number" id="eMeet" min="0" value="0"></label></div>
+        <div class="ma"><button type="button" class="btn-ghost" onclick="closeModal()">Cancel</button><button type="submit" class="btn-p">Save</button></div>
+      </form>
+    </div>
+  </div>
+</div>
+<script src="app.js"></script>
+</body>
+</html>
