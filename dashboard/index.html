@@ -111,37 +111,62 @@
         </div>
       </div>
       <div class="card full-span">
-        <h2>✉️ Email Sequence Architecture</h2>
-        <p class="hint">Each sequence = 4 emails over 12 days. Always plain text, &lt;80 words, one soft CTA.</p>
+        <h2>🔥 Multi-Channel Sequence (LinkedIn + Email)</h2>
+        <p class="hint">LinkedIn pre-warming increases open rates by 40%. This is the full sequence — email alone gets 1-3% reply, multi-channel gets 5-12%.</p>
         <div class="seq-flow">
-          <div class="seq-step"><div class="step-day">Day 0</div><div class="step-title">Pain + Curiosity</div><div class="step-desc">Lead with THEIR pain. Ask a question. No links, no pitch.</div><div class="step-ex">"What's your team's false positive rate on code scans right now?"</div></div>
+          <div class="seq-step" style="border-left:3px solid #0077b5"><div class="step-day">Day -3</div><div class="step-title">👤 LinkedIn: View Profile</div><div class="step-desc">View their profile. They see the notification and your name.</div><div class="step-ex">Just view — don't connect yet.</div></div>
           <div class="seq-arrow">→</div>
-          <div class="seq-step"><div class="step-day">Day 3</div><div class="step-title">Social Proof + Insight</div><div class="step-desc">Share a data point or unique capability. Build credibility.</div><div class="step-ex">"We're the only platform catching PII before it's sent to AI assistants."</div></div>
+          <div class="seq-step" style="border-left:3px solid #0077b5"><div class="step-day">Day -1</div><div class="step-title">🤝 LinkedIn: Connect</div><div class="step-desc">Send connection request with NO note (higher accept rate than with note).</div><div class="step-ex">No note = 40% accept vs 25% with note.</div></div>
           <div class="seq-arrow">→</div>
-          <div class="seq-step"><div class="step-day">Day 7</div><div class="step-title">Value Bomb</div><div class="step-desc">Give something useful regardless of whether they buy. CVE analysis, case study.</div><div class="step-ex">"CVE-2026-XXXXX affects Django apps — most SAST tools miss it. Here's our analysis."</div></div>
+          <div class="seq-step" style="border-left:3px solid var(--accent)"><div class="step-day">Day 0</div><div class="step-title">✉️ Email 1: Pain + Curiosity</div><div class="step-desc">They recognise your name from LinkedIn → higher open rate. Lead with THEIR pain.</div><div class="step-ex">"What's your team's false positive rate on code scans right now?"</div></div>
           <div class="seq-arrow">→</div>
-          <div class="seq-step"><div class="step-day">Day 12</div><div class="step-title">Breakup</div><div class="step-desc">Short, no pressure. Creates FOMO. Highest reply-rate email.</div><div class="step-ex">"If this isn't a priority right now, I'll close this thread. Just hit reply if it is."</div></div>
+          <div class="seq-step" style="border-left:3px solid #0077b5"><div class="step-day">Day 2</div><div class="step-title">👍 LinkedIn: Engage</div><div class="step-desc">Like or comment on their recent post. Stay on their radar.</div><div class="step-ex">Genuine comment — not "Great post!"</div></div>
+          <div class="seq-arrow">→</div>
+          <div class="seq-step" style="border-left:3px solid var(--accent)"><div class="step-day">Day 3</div><div class="step-title">✉️ Email 2: Social Proof</div><div class="step-desc">Share a data point or unique capability. Mention PII pre-LLM protection.</div><div class="step-ex">"We're the only platform catching PII before it's sent to AI assistants."</div></div>
+          <div class="seq-arrow">→</div>
+          <div class="seq-step" style="border-left:3px solid #0077b5"><div class="step-day">Day 5</div><div class="step-title">💬 LinkedIn: DM</div><div class="step-desc">Short DM — different angle from email. Reference their work.</div><div class="step-ex">"Saw you're scaling the security team — built something you might find useful."</div></div>
+          <div class="seq-arrow">→</div>
+          <div class="seq-step" style="border-left:3px solid var(--accent)"><div class="step-day">Day 7</div><div class="step-title">✉️ Email 3: Free Scan Offer</div><div class="step-desc">Offer to scan one of their repos for free. Zero commitment, instant value.</div><div class="step-ex">"Want us to scan one repo? 5-min GitHub connect — we'll show you what we find. No call needed."</div></div>
+          <div class="seq-arrow">→</div>
+          <div class="seq-step" style="border-left:3px solid var(--accent)"><div class="step-day">Day 12</div><div class="step-title">✉️ Email 4: Breakup + Referral</div><div class="step-desc">Short, no pressure. Add referral ask for 5-10% internal warm intro rate.</div><div class="step-ex">"If you're not the right person, would you mind pointing me to who handles AppSec at {{company}}?"</div></div>
+        </div>
+      </div>
+      <div class="card full-span">
+        <h2>⚡ 7 Multipliers That 3-5x Your Results</h2>
+        <div class="icp-grid">
+          <div class="icp-card primary"><h3>1. Free Scan Offer (replaces "Book a Demo")</h3><table class="mini"><tr><td><strong>Old CTA</strong></td><td>"Worth a 15-min chat?"</td></tr><tr><td><strong>New CTA</strong></td><td>"Want us to scan one repo for free? Takes 5 min, no call needed."</td></tr><tr><td><strong>Impact</strong></td><td style="color:var(--green)">3-5x higher conversion — zero commitment, instant value</td></tr></table></div>
+          <div class="icp-card primary"><h3>2. Trigger-Based Timing</h3><table class="mini"><tr><td><strong>Funding</strong></td><td>"Congrats on the round — scaling teams usually inherit security debt"</td></tr><tr><td><strong>DevSecOps job</strong></td><td>"Saw you're hiring — this might save you a headcount"</td></tr><tr><td><strong>Major CVE</strong></td><td>"CVE-2026-XXXXX impacts your stack — here's our analysis"</td></tr><tr><td><strong>Impact</strong></td><td style="color:var(--green)">3-5x reply rate vs random timing</td></tr></table></div>
+          <div class="icp-card secondary"><h3>3. Reply Speed</h3><table class="mini"><tr><td><strong>&lt;5 min</strong></td><td style="color:var(--green)">21% → meeting</td></tr><tr><td><strong>&lt;1 hour</strong></td><td>8% → meeting</td></tr><tr><td><strong>&lt;24 hours</strong></td><td style="color:var(--red)">2% → meeting</td></tr><tr><td><strong>Action</strong></td><td>Set up Instantly → Slack webhook for instant alerts</td></tr></table></div>
+          <div class="icp-card secondary"><h3>4. Account-Based Multi-Threading</h3><table class="mini"><tr><td><strong>Method</strong></td><td>Email 3 people at same company with different angles</td></tr><tr><td><strong>CISO</strong></td><td>"False positive fatigue" angle</td></tr><tr><td><strong>VP Eng</strong></td><td>"AI-generated code risk" angle</td></tr><tr><td><strong>DevSecOps</strong></td><td>"Free scan, see results in 5 min" angle</td></tr><tr><td><strong>Impact</strong></td><td style="color:var(--green)">3x chance of getting a meeting per account</td></tr></table></div>
         </div>
       </div>
       <div class="card">
         <h2>Sequence A: False Positive Fatigue</h2>
         <p class="hint">For CISOs / Security Leaders</p>
         <div class="seq-detail">
-          <div class="email-preview"><strong>Subject:</strong> {{firstName}}, quick question on {{company}}'s appsec<br><strong>Hook:</strong> "What's your false positive rate? We keep hearing 30-40%. Precogs runs at &lt;2%."<br><strong>CTA:</strong> "Worth a 15-min chat?"</div>
+          <div class="email-preview"><strong>Subject:</strong> {{firstName}}, quick question on {{company}}'s appsec<br><strong>Hook:</strong> "What's your false positive rate? We keep hearing 30-40%. Precogs runs at &lt;2%."<br><strong>CTA:</strong> "Want us to scan one repo? 5-min connect, no call needed."</div>
         </div>
       </div>
       <div class="card">
         <h2>Sequence B: AI Code Security</h2>
         <p class="hint">For VP Eng / CTO</p>
         <div class="seq-detail">
-          <div class="email-preview"><strong>Subject:</strong> {{company}} + AI-generated code security<br><strong>Hook:</strong> "34% of Copilot-generated functions have OWASP Top 10 vulns."<br><strong>CTA:</strong> "Worth a quick look?"</div>
+          <div class="email-preview"><strong>Subject:</strong> {{company}} + AI-generated code security<br><strong>Hook:</strong> "34% of Copilot-generated functions have OWASP Top 10 vulns."<br><strong>CTA:</strong> "We'll scan one of your repos for free — takes 5 minutes."</div>
         </div>
       </div>
       <div class="card full-span">
         <h2>Sequence C: Competitor Displacement</h2>
         <p class="hint">For known Snyk/SonarQube users (detected via Clay enrichment)</p>
         <div class="seq-detail">
-          <div class="email-preview"><strong>Subject:</strong> {{firstName}}, re: {{company}}'s Snyk setup<br><strong>Hook:</strong> "Not bashing Snyk — they're solid for SCA. But if your team is still dealing with noisy SAST or missing PII in AI code, that's the gap we fill."<br><strong>CTA:</strong> "Worth comparing results on one repo?"</div>
+          <div class="email-preview"><strong>Subject:</strong> {{firstName}}, re: {{company}}'s Snyk setup<br><strong>Hook:</strong> "Not bashing Snyk — they're solid for SCA. But if your team is still dealing with noisy SAST or missing PII in AI code, that's the gap we fill."<br><strong>CTA:</strong> "Worth comparing results on one repo? No rip-and-replace."</div>
+        </div>
+      </div>
+      <div class="card full-span">
+        <h2>📅 Cal.com Integration</h2>
+        <p class="hint">Use Cal.com for frictionless booking. One-click scheduling = 2x meeting conversion vs back-and-forth emails.</p>
+        <div class="icp-grid">
+          <div class="icp-card primary"><h3>Setup</h3><table class="mini"><tr><td><strong>Link</strong></td><td>cal.com/rajnish-precogs/15min</td></tr><tr><td><strong>In emails</strong></td><td>Add to positive reply: "Here's my calendar — grab any slot: [link]"</td></tr><tr><td><strong>In signature</strong></td><td>Add to all email signatures (Instantly merge tag)</td></tr><tr><td><strong>Buffer</strong></td><td>Set 15-min buffer between meetings in Cal.com settings</td></tr></table></div>
+          <div class="icp-card secondary"><h3>Pro Tips</h3><table class="mini"><tr><td><strong>Don't</strong></td><td>Put Cal.com link in first cold email — looks presumptuous</td></tr><tr><td><strong>Do</strong></td><td>Send it ONLY after they reply positively</td></tr><tr><td><strong>Set</strong></td><td>Confirmation + reminder emails in Cal.com (reduces no-shows by 40%)</td></tr><tr><td><strong>Track</strong></td><td>Cal.com webhooks → your pipeline tracker</td></tr></table></div>
         </div>
       </div>
     </div>
@@ -163,15 +188,15 @@
     </div>
     <div class="grid-2">
       <div class="card">
-        <h2>📊 Expected Benchmarks</h2>
+        <h2>📊 Benchmarks: Email Only vs With Multipliers</h2>
         <table>
-          <thead><tr><th>Metric</th><th>Industry Avg</th><th>Good</th><th>Great</th></tr></thead>
+          <thead><tr><th>Metric</th><th>Email Only</th><th>+ LinkedIn</th><th>+ Free Scan</th><th>+ Triggers</th></tr></thead>
           <tbody>
-            <tr><td>Open Rate</td><td>40-50%</td><td class="good">55%</td><td class="great">65%+</td></tr>
-            <tr><td>Reply Rate</td><td>1-3%</td><td class="good">5%</td><td class="great">8%+</td></tr>
-            <tr><td>Positive Reply</td><td>0.5-1%</td><td class="good">2%</td><td class="great">3%+</td></tr>
-            <tr><td>Bounce Rate</td><td>&lt;3%</td><td class="good">&lt;2%</td><td class="great">&lt;1%</td></tr>
-            <tr><td>Meeting/100 sent</td><td>0.5</td><td class="good">1-2</td><td class="great">3+</td></tr>
+            <tr><td>Open Rate</td><td>45%</td><td class="good">60%</td><td>60%</td><td class="great">65%</td></tr>
+            <tr><td>Reply Rate</td><td>2%</td><td class="good">5%</td><td class="great">7%</td><td class="great">10%</td></tr>
+            <tr><td>Positive Reply</td><td>0.8%</td><td class="good">2%</td><td class="great">3.5%</td><td class="great">5%</td></tr>
+            <tr><td>Meeting/100</td><td>0.5</td><td class="good">1.5</td><td class="great">2.5</td><td class="great">4+</td></tr>
+            <tr><td>Bounce Rate</td><td>&lt;3%</td><td>&lt;2%</td><td class="good">&lt;1%</td><td class="great">&lt;1%</td></tr>
           </tbody>
         </table>
       </div>
@@ -223,15 +248,15 @@
       <div class="card">
         <h2>📈 Cumulative Projections (8 weeks)</h2>
         <table>
-          <thead><tr><th>Metric</th><th>Conservative</th><th>Optimistic</th></tr></thead>
+          <thead><tr><th>Metric</th><th>Email Only</th><th>With Multipliers</th></tr></thead>
           <tbody>
-            <tr><td>Total emails sent</td><td>2,500</td><td>3,500</td></tr>
-            <tr><td>Total opens</td><td>1,250 (50%)</td><td>2,100 (60%)</td></tr>
-            <tr><td>Total replies</td><td>50 (2%)</td><td>175 (5%)</td></tr>
-            <tr><td>Positive replies</td><td>25 (1%)</td><td>70 (2%)</td></tr>
-            <tr><td>Meetings booked</td><td class="good">10-15</td><td class="great">25-35</td></tr>
-            <tr><td>Pipeline value</td><td>£50K-100K</td><td>£150K-250K</td></tr>
-            <tr><td>Closed deals</td><td>1-2</td><td>3-5</td></tr>
+            <tr><td>Total emails sent</td><td>3,000</td><td>3,000</td></tr>
+            <tr><td>Total opens</td><td>1,350 (45%)</td><td class="good">1,950 (65%)</td></tr>
+            <tr><td>Total replies</td><td>60 (2%)</td><td class="great">150 (5%)</td></tr>
+            <tr><td>Positive replies</td><td>24 (0.8%)</td><td class="great">105 (3.5%)</td></tr>
+            <tr><td>Meetings booked</td><td>10-12</td><td class="great">40-60 ✅</td></tr>
+            <tr><td>Pipeline value</td><td>£50K-80K</td><td class="great">£200K-400K</td></tr>
+            <tr><td>Closed deals</td><td>1-2</td><td class="great">4-8</td></tr>
           </tbody>
         </table>
       </div>
